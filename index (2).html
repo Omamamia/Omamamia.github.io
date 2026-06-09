@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yuto Furuuchi | Research Portfolio</title>
+  <meta name="description" content="古内悠登の研究ポートフォリオ。自動運転システムの安全保証、Assurance Case、GSN、AHP、シミュレーション評価に関する研究紹介。" />
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --accent-soft: #dbeafe;
+      --chip: #eef2ff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 34rem),
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.12), transparent 30rem),
+        var(--bg);
+      line-height: 1.75;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 248, 251, 0.78);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), #0ea5e9);
+      color: #fff;
+      font-size: 14px;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.28);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+      padding: 8px 10px;
+      border-radius: 999px;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    .hero {
+      padding: 92px 0 54px;
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--accent-dark);
+      background: rgba(219, 234, 254, 0.8);
+      border: 1px solid rgba(37, 99, 235, 0.16);
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(38px, 7vw, 72px);
+      line-height: 1.04;
+      letter-spacing: -0.05em;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 22px 0 0;
+      color: #475569;
+      font-size: clamp(16px, 2vw, 19px);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 750;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      transition: 0.2s ease;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .btn.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.1);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 30px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #1d4ed8, #38bdf8);
+      color: #fff;
+      font-size: 32px;
+      font-weight: 850;
+      margin-bottom: 20px;
+    }
+
+    .hero-card dl {
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .hero-card dt {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-card dd {
+      margin: 2px 0 0;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 44px 0;
+      scroll-margin-top: 86px;
+    }
+
+    .section-card {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(226, 232, 240, 0.92);
+      border-radius: var(--radius);
+      padding: clamp(24px, 4vw, 40px);
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.055);
+    }
+
+    .section-title {
+      margin: 0 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: clamp(26px, 4vw, 36px);
+      letter-spacing: -0.04em;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 12px;
+      height: 34px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent), #0ea5e9);
+      flex: 0 0 auto;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .mini-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .mini-card p,
+    .section-card p {
+      color: #475569;
+    }
+
+    .meta-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .meta-list li {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      color: #475569;
+    }
+
+    .meta-list strong {
+      min-width: 90px;
+      color: var(--text);
+    }
+
+    .chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .chip {
+      border: 1px solid rgba(37, 99, 235, 0.14);
+      background: var(--chip);
+      color: #334155;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .project {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .project::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -58px auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.08);
+    }
+
+    .project h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .project ul {
+      margin: 14px 0 0;
+      padding-left: 20px;
+      color: #475569;
+    }
+
+    .publication {
+      border-left: 4px solid var(--accent);
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: #f8fafc;
+    }
+
+    .publication p {
+      margin: 0;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #9a3412;
+      font-size: 14px;
+    }
+
+    .contact-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding: 24px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      color: #fff;
+    }
+
+    .contact-box p {
+      color: rgba(255, 255, 255, 0.86);
+      margin: 4px 0 0;
+    }
+
+    .contact-box .btn {
+      color: var(--text);
+      background: #fff;
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    footer {
+      color: var(--muted);
+      text-align: center;
+      padding: 44px 22px 54px;
+      font-size: 14px;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.32);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: 0.2s ease;
+      font-size: 18px;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 820px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-links a {
+        padding: 6px 8px;
+        font-size: 13px;
+      }
+
+      .section-card,
+      .project,
+      .mini-card {
+        border-radius: 18px;
+      }
+
+      .meta-list li {
+        display: block;
+      }
+
+      .meta-list strong {
+        display: block;
+        margin-bottom: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Yuto Furuuchi home">
+        <span class="brand-mark">YF</span>
+        <span>Yuto Furuuchi</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#profile">Profile</a>
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero" aria-label="Hero">
+      <div>
+        <div class="eyebrow">Research Portfolio / Master&apos;s Student</div>
+        <h1>Safety Assurance for <span>Automated Driving Systems</span></h1>
+        <p class="lead">
+          自動運転システムの安全保証、Assurance Case、GSN、シミュレーション評価を中心に、
+          安全性・交通流の継続性・快適性のトレードオフを扱う研究に取り組んでいます。
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#research">View Research</a>
+          <a class="btn" href="mailto:csyu25014@g.nihon-u.ac.jp">Contact Me</a>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Basic information">
+        <div class="avatar" aria-hidden="true">古</div>
+        <dl>
+          <div>
+            <dt>Name</dt>
+            <dd>古内 悠登 / Yuto Furuuchi</dd>
+          </div>
+          <div>
+            <dt>Affiliation</dt>
+            <dd>日本大学大学院 理工学研究科 情報科学専攻</dd>
+          </div>
+          <div>
+            <dt>Laboratory</dt>
+            <dd>松野研究室</dd>
+          </div>
+          <div>
+            <dt>Year</dt>
+            <dd>修士課程2年</dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <section id="profile">
+      <div class="section-card">
+        <h2 class="section-title">Profile</h2>
+        <div class="grid-2">
+          <div>
+            <p>
+              日本大学大学院理工学研究科情報科学専攻 修士課程2年。松野研究室に所属し、
+              自動運転システムにおける安全保証、Assurance Case、Goal Structuring Notation（GSN）、
+              シミュレーション評価を用いた安全性説明の更新手法に関する研究に取り組んでいます。
+            </p>
+          </div>
+          <div class="mini-card">
+            <ul class="meta-list">
+              <li><strong>Name</strong><span>古内 悠登 / Yuto Furuuchi</span></li>
+              <li><strong>Program</strong><span>修士課程2年</span></li>
+              <li><strong>Major</strong><span>情報科学専攻</span></li>
+              <li><strong>Lab</strong><span>松野研究室</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="section-card">
+        <h2 class="section-title">Research</h2>
+        <div class="grid-2">
+          <article class="mini-card">
+            <h3>Research Theme</h3>
+            <p>
+              AHPを用いた自動運転システムのAssurance Case更新のためのパラメータ調整手法
+            </p>
+            <p>
+              <strong>English:</strong> AHP-Based Parameter Adjustment for Updating Assurance Cases of Automated Driving Systems
+            </p>
+          </article>
+          <article class="mini-card">
+            <h3>Research Fields</h3>
+            <div class="chips" aria-label="Research fields">
+              <span class="chip">Automated Driving Systems</span>
+              <span class="chip">Assurance Case</span>
+              <span class="chip">Simulation-based Testing</span>
+            </div>
+          </article>
+        </div>
+        <div class="grid-2" style="margin-top: 22px;">
+          <article class="mini-card">
+            <h3>Background</h3>
+            <p>
+              自動運転システムを社会実装するためには、システムが十分に安全であることを継続的に説明する仕組みが必要です。
+              Assurance Caseは、安全性に関する主張・根拠・証拠を構造化して示す手法ですが、
+              テスト結果やパラメータが変化した際に、どのように安全性の説明を更新するかが課題となります。
+            </p>
+          </article>
+          <article class="mini-card">
+            <h3>Purpose</h3>
+            <p>
+              シミュレーション結果を用いて、安全性・交通流の継続性・快適性の観点からパラメータを評価し、
+              その結果をAssurance Case内のGSNノードへ反映することで、シミュレーション証拠と安全性説明の対応関係を明確にします。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-card">
+        <h2 class="section-title">Projects</h2>
+        <div class="timeline">
+          <article class="project">
+            <h3>AHP-Based Parameter Adjustment for ADS Assurance Cases</h3>
+            <p>
+              自動運転システムのAssurance Caseを対象に、AHPを用いてシミュレーション結果を評価し、
+              安全性・交通流の継続性・快適性のバランスを考慮したパラメータ更新手法を検討しました。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-card">
+        <h2 class="section-title">Skills</h2>
+        <div class="grid-2">
+          <article class="mini-card">
+            <h3>Research Skills</h3>
+            <div class="chips">
+              <span class="chip">Assurance Case</span>
+              <span class="chip">Simulation</span>
+            </div>
+          </article>
+          <article class="mini-card">
+            <h3>Technical Skills</h3>
+            <div class="chips">
+              <span class="chip">MATLAB</span>
+              <span class="chip">RoadRunner</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-card">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-box">
+          <div>
+            <h3 style="margin: 0; font-size: 24px;">Research-related inquiries are welcome.</h3>
+            <p>研究に関するお問い合わせは、以下のメールアドレスまでご連絡ください。</p>
+          </div>
+          <a class="btn" href="mailto:csyu25014@g.nihon-u.ac.jp">csyu25014@g.nihon-u.ac.jp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Yuto Furuuchi. Research Portfolio.</p>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script>
+    const year = document.getElementById('year');
+    year.textContent = new Date().getFullYear();
+
+    const backToTop = document.getElementById('backToTop');
+    const navLinks = [...document.querySelectorAll('.nav-links a')];
+    const sections = navLinks
+      .map(link => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('show', window.scrollY > 520);
+
+      let current = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 120;
+        if (window.scrollY >= top) current = '#' + section.id;
+      });
+
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === current);
+      });
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
